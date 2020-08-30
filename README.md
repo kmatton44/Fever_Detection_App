@@ -1,3 +1,2 @@
-Team Members who are currently developing this App: Yixing Chen, Kanoa Matton.
-This is a fever detection app with social distancing functionality based on android platform only for SU student.
+This is a fever detection app with social distancing functionality based on android platform only for SU student.\n Team Members who are currently developing this App: Yixing Chen, Kanoa Matton.
 
