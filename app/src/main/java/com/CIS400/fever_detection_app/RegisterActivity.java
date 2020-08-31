@@ -45,9 +45,17 @@ public class RegisterActivity extends BaseActivity {
         ageText = (EditText) findViewById(R.id.input_age);
         phoneText = (EditText) findViewById(R.id.input_mobile);
         radioGroup = (RadioGroup) findViewById(R.id.radioSex);
-        int selectedID = radioGroup.getCheckedRadioButtonId();
-        radioButton = (RadioButton) findViewById(selectedID);
-        gender = radioButton.getText().toString();
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                RadioButton checkedRadioButton = (RadioButton) findViewById(i);
+                String text = checkedRadioButton.getText().toString();
+                Toast.makeText(getApplicationContext(), "Changed to " + text, Toast.LENGTH_SHORT).show();
+                int selectedID = radioGroup.getCheckedRadioButtonId();
+                radioButton = (RadioButton) findViewById(selectedID);
+                gender = radioButton.getText().toString();
+            }
+        });
         createBtn = (Button) findViewById(R.id.btn_signup);
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
