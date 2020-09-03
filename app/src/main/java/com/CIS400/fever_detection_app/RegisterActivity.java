@@ -1,7 +1,5 @@
 package com.CIS400.fever_detection_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,26 +10,23 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.CIS400.fever_detection_app.data.Student;
+import com.CIS400.fever_detection_app.data.MyUser;
 
-import java.util.List;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
-import cn.bmob.v3.listener.FindListener;
 
 public class RegisterActivity extends BaseActivity {
 
     private static final String TAG = "RegisterActivity";
-    private EditText nameText, uidText, pwdText, rpwdText, ageText, phoneText;
+    private EditText nameText, emailText, pwdText, rpwdText, ageText, phoneText;
     private String gender;
-    private Button createBtn;
+    private Button createBtn, link_Login;
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private String pwd1, pwd2;
-    private String UidString, pwdString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,24 +34,33 @@ public class RegisterActivity extends BaseActivity {
         setContentView(R.layout.activity_register);
         Bmob.initialize(this, "2de9dc3c787359faf54d36e92a2bbfb0");
         nameText = (EditText) findViewById(R.id.input_name);
-        uidText = (EditText) findViewById(R.id.input_id);
+        emailText = (EditText) findViewById(R.id.input_Email);
         pwdText = (EditText) findViewById(R.id.input_password);
         rpwdText = (EditText) findViewById(R.id.input_reEnterPassword);
         ageText = (EditText) findViewById(R.id.input_age);
         phoneText = (EditText) findViewById(R.id.input_mobile);
         radioGroup = (RadioGroup) findViewById(R.id.radioSex);
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+        radioButton = (RadioButton) findViewById(selectedId);
+        gender = radioButton.getText().toString();
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 RadioButton checkedRadioButton = (RadioButton) findViewById(i);
-                String text = checkedRadioButton.getText().toString();
-                Toast.makeText(getApplicationContext(), "Changed to " + text, Toast.LENGTH_SHORT).show();
-                int selectedID = radioGroup.getCheckedRadioButtonId();
-                radioButton = (RadioButton) findViewById(selectedID);
-                gender = radioButton.getText().toString();
+                gender = checkedRadioButton.getText().toString();
+                Toast.makeText(getApplicationContext(), "Changed to " + gender, Toast.LENGTH_SHORT).show();
             }
         });
         createBtn = (Button) findViewById(R.id.btn_signup);
+        link_Login = (Button) findViewById(R.id.link_login);
+        link_Login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,7 +71,7 @@ public class RegisterActivity extends BaseActivity {
                     Toast.makeText(getApplicationContext(), "Name cannot be empty", Toast.LENGTH_SHORT).show();
                 }
 
-                if (TextUtils.isEmpty(uidText.getText().toString())) {
+                if (TextUtils.isEmpty(emailText.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "Net ID cannot be empty", Toast.LENGTH_SHORT).show();
                 }
 
@@ -85,7 +89,7 @@ public class RegisterActivity extends BaseActivity {
                 if (pwd1.equals("") || pwd2.equals("")) {
                     Toast.makeText(getApplicationContext(), "Password cannot be empty", Toast.LENGTH_SHORT).show();
                 } else if (pwd1.equals(pwd2)) {
-                    isRegistered();
+                    doRegistration();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -97,41 +101,21 @@ public class RegisterActivity extends BaseActivity {
     }
 
     private void doRegistration() {
-        BmobQuery<Student> query = new BmobQuery<Student>();
-        Student std = new Student();
-        std.setName(nameText.getText().toString());
-        std.setId(uidText.getText().toString());
-        std.setPwd(pwdText.getText().toString());
-        std.setAge(Integer.parseInt(ageText.getText().toString()));
-        std.setPhoneNum(phoneText.getText().toString());
-        std.setGender(gender);
-        std.save(new SaveListener<String>() {
+        BmobQuery<MyUser> query = new BmobQuery<MyUser>();
+        MyUser user = new MyUser();
+        user.setUsername(nameText.getText().toString().trim());
+        user.setEmail(emailText.getText().toString().trim());
+        user.setPassword(pwdText.getText().toString().trim());
+        user.setAge(Integer.parseInt(ageText.getText().toString().trim()));
+        user.setPhoneNum(phoneText.getText().toString().trim());
+        user.setGender(gender);
+        user.signUp(new SaveListener<MyUser>(){
             @Override
-            public void done(String s, BmobException e) {
-                if(e==null){
-                    Toast.makeText(getApplicationContext(),"Registration succeeded", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(getApplicationContext(), "Registration failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    private void isRegistered(){
-        BmobQuery<Student> query = new BmobQuery<Student>();
-        query.addWhereEqualTo("id", uidText.getText().toString());
-        query.setLimit(1);
-        query.findObjects(new FindListener<Student>() {
-            @Override
-            public void done(List<Student> list, BmobException e) {
-                if(e == null){
-                    if(list == null || list.size() == 0){
-                        doRegistration();
-                    }else{
-                        Toast.makeText(getApplicationContext(), "This user has registered", Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    Toast.makeText(getApplicationContext(),"Registration failed", Toast.LENGTH_SHORT).show();
+            public void done(MyUser s, BmobException e) {
+                if (e == null) {
+                        Toast.makeText(getApplicationContext(), "Hello! " + s.getUsername(), Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Registration failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
