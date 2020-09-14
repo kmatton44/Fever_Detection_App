@@ -1,4 +1,4 @@
-package com.CIS400.fever_detection_app;
+package com.CIS400.fever_detection_app.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.CIS400.fever_detection_app.R;
 import com.CIS400.fever_detection_app.data.MyUser;
 
 
@@ -56,7 +57,7 @@ public class RegisterActivity extends BaseActivity {
         link_Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -90,7 +91,7 @@ public class RegisterActivity extends BaseActivity {
                     Toast.makeText(getApplicationContext(), "Password cannot be empty", Toast.LENGTH_SHORT).show();
                 } else if (pwd1.equals(pwd2)) {
                     doRegistration();
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                     finish();
                 } else if (pwd1.compareTo(pwd2) != 0) {

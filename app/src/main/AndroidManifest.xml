@@ -18,22 +18,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ForgetPasswordActivity"></activity>
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".RegisterActivity" />
-
-        <provider
-            android:name="cn.bmob.v3.util.BmobContentProvider"
-            android:authorities="com.CIS400.fever_detection_app.BmobContentProvider" />
-
-        <activity android:name=".BaseActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.CoronaStatsActivity"></activity>
+        <activity android:name=".activity.ForgetPasswordActivity" />
+        <activity android:name=".activity.StartUpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity android:name=".activity.RegisterActivity" />
+
+        <provider
+            android:name="cn.bmob.v3.util.BmobContentProvider"
+            android:authorities="com.CIS400.fever_detection_app.BmobContentProvider" />
+
+        <activity android:name=".activity.BaseActivity" />
+        <activity android:name=".activity.LoginActivity" />
     </application>
 
 </manifest>

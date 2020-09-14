@@ -1,4 +1,4 @@
-package com.CIS400.fever_detection_app;
+package com.CIS400.fever_detection_app.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.CIS400.fever_detection_app.R;
 import com.CIS400.fever_detection_app.data.MyUser;
 
 import cn.bmob.v3.Bmob;
@@ -47,7 +48,7 @@ public class ForgetPasswordActivity extends BaseActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ForgetPasswordActivity.this, MainActivity.class);
+                Intent intent = new Intent(ForgetPasswordActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
