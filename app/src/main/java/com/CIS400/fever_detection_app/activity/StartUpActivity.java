@@ -12,16 +12,15 @@ public class StartUpActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_up);
-        //startActivity(new Intent(StartUpActivity.this, MainActivity.class));
-        //finish();
+        startActivity(new Intent(StartUpActivity.this, MainActivity.class));
+        finish();
 
-        //Handler will auto bind with the thread which created it, so the new runnable event will be put into the main thread for execution
-        new Handler().postDelayed(new Runnable() {
+        /*new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 startActivity(new Intent(StartUpActivity.this, LoginActivity.class));
                 finish();
             }
-        }, 2500);
+        }, 2500);*/
     }
 }

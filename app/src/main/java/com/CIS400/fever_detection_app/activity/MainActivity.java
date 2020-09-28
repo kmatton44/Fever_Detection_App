@@ -10,24 +10,19 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.CIS400.fever_detection_app.R;
 import com.CIS400.fever_detection_app.fragments.contactsFragment;
-import com.CIS400.fever_detection_app.fragments.globalListFragment;
 import com.CIS400.fever_detection_app.fragments.heartRateFragment;
 import com.CIS400.fever_detection_app.fragments.homeFragment;
 import com.CIS400.fever_detection_app.fragments.meFragment;
@@ -61,13 +56,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        initToolbar();
+        //initToolbar();
         initViews(); //initialize layout n image button
         initEvents(); //initialize events
         selectTab(0); // select tab0 as default
     }
 
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -93,7 +88,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
     }
-
+*/
     private void initEvents(){
         mTab1.setOnClickListener(this);
         mTab2.setOnClickListener(this);

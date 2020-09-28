@@ -1,6 +1,5 @@
 package com.CIS400.fever_detection_app.adapters;
 
-import android.content.Context;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -8,11 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.CIS400.fever_detection_app.fragments.globalListFragment;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class MyViewPagerAdapter extends FragmentPagerAdapter {

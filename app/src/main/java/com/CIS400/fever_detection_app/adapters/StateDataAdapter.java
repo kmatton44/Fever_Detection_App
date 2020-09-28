@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.CIS400.fever_detection_app.model.GlobalDataModel;
 import com.google.android.material.card.MaterialCardView;
 
 import com.CIS400.fever_detection_app.R;
