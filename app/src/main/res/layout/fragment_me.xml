@@ -84,6 +84,7 @@
 
 
                 <RelativeLayout
+                    android:id="@+id/RelativeLayout_Heart_Rate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
@@ -114,6 +115,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/RelativeLayout_Contacts"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/preference_last_item"
@@ -142,6 +144,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/RelativeLayout_Change_Password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
@@ -171,6 +174,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/RelativeLayout_Change_PhoneNum"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/preference_last_item"
@@ -198,6 +202,7 @@
                 </RelativeLayout>
 
                 <Button
+                    android:id="@+id/Button_Logout"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="10dp"

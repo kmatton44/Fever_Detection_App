@@ -21,7 +21,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.CoronaStatsActivity"></activity>
+        <activity android:name=".activity.MeChangePhoneNumActivity"></activity>
+        <activity android:name=".activity.MeChangePasswordActivity" />
+        <activity android:name=".activity.ContactsLogActivity" />
+        <activity android:name=".activity.HeartRateLogActivity" />
+        <activity android:name=".activity.CoronaStatsActivity" />
         <activity android:name=".activity.ForgetPasswordActivity" />
         <activity android:name=".activity.StartUpActivity">
             <intent-filter>
